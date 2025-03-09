@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Logger</title>
+</head>
+<body>
+    <h1>Welcome to My GitHub Page</h1>
+    <p>Your visit is being logged.</p>
+    <script>
+    fetch("https://api64.ipify.org?format=json")
+    .then(response => response.json())
+    .then(data => {
+        fetch("https://pyprojects-production.up.railway.app/log", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ip: data.ip })
+        });
+    });
+   </script>
+</body>
+</html>
